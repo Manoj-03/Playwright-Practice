@@ -1,0 +1,19 @@
+{
+    "username": "admin@gmail.com",
+    "password": "admin@123",
+    "name": "Mahesh",
+    "interest": ["Cypress","Java","API"],
+    "gender": "Male",
+    "address": {
+        "area": "Hitech City",
+        "city": "Hyderabad",
+        "pincode": 500012
+    },
+    "states": [
+        "Telangana",
+        "Andhra Pradesh",
+        "Karnataka",
+        "Maharashtra",
+        "Tamil Nadu"
+  ]
+}
