@@ -66,7 +66,7 @@ npx playwright show-report
 ## 📝 Example Test Data
 
 - Example testdataPOM.json:
-```bash
+```json
 {
     "username": "example@email.com",
     "password": "pass@123"
