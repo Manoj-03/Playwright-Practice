@@ -12,7 +12,7 @@ test("Valid Login and Mouse Hover",async ({page}) => {
 
     await expect(page).toHaveURL("https://freelance-learn-automation.vercel.app/");
 
-    await page.locator("//span[text()='Manage']").hover(); // we have mutliple arguments for hover metho
+    await page.locator("//span[text()='Manage']").hover(); // we have mutliple arguments for hover method
 
     await page.locator("//a[normalize-space()='Manage Courses']").click();
 });
