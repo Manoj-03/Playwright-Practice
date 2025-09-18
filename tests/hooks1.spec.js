@@ -1,6 +1,6 @@
 import {test,expect} from '@playwright/test';
 
-test("Home Pgae Test", async({page}) => {
+test("Home Page Test", async({page}) => {
 
     await page.goto("https://demoblaze.com/");
 
@@ -11,8 +11,10 @@ test("Home Pgae Test", async({page}) => {
     await page.click("//button[normalize-space()='Log in']");
 
     // Home Page
-    const products = await page.$$(".hrefch");
-    await expect(products).toHaveLength(9);
+    // const products = await page.$$(".hrefch");
+    // await expect(products).toHaveLength(9);
+    const products = await page.locator(".hrefch");
+    await expect(products).toHaveCount(9);
 
     // Logout
     await page.click("//a[@id='logout2']");
