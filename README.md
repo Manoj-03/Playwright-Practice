@@ -14,7 +14,7 @@ A comprehensive **practice project** for learning and implementing **end-to-end 
 
 ## 🧪 Test Coverage
 
-This project includes **28+ test files** covering:
+This project includes **30+ test files** covering
 
 ### Core Playwright Concepts
 - **Locators & Elements**: Built-in locators, multiple element handling, hidden elements
@@ -39,18 +39,37 @@ This project includes **28+ test files** covering:
 
 ---
 
+## 🧩 Playwright Configuration Highlights
+
+- `testDir`: `./tests`
+- `fullyParallel`: `true`
+- `forbidOnly`: Enabled on CI
+- `retries`: `2` on CI, `0` locally
+- `workers`: `1` on CI, default locally
+- `reporter`: HTML and `allure-playwright`
+- `use` defaults:
+  - `trace`: `on-first-retry`
+  - `screenshot`: `only-on-failure`
+  - `video`: `retain-on-failure`
+- Project `chromium` uses `Desktop Chrome` with viewport `{ width: 1463, height: 748 }`
+
+---
+
 ## ⚙️ Installation & Setup
 
 ### Prerequisites
 - **Node.js** (version 16 or higher)
 - **npm** or **yarn** package manager
+ - (Optional) **Allure Commandline** for viewing Allure reports
+   - macOS (Homebrew): `brew install allure`
+   - npm (global): `npm i -g allure-commandline`
 
 ### Installation Steps
 
 1. **Clone the repository:**
 ```bash
-git clone https://github.com/Manoj-03/Playwright-Practice.git
-cd Playwright-Practice
+git clone <your-repo-url>
+cd practice-playwright
 ```
 
 2. **Install dependencies:**
@@ -239,7 +258,7 @@ practice-playwright/
 ├── 📁 pages/                    # Page Object Model classes
 │   ├── homePage.js             # Home page object
 │   └── loginPage.js            # Login page object
-├── 📁 tests/                    # Test scripts (28+ test files)
+├── 📁 tests/                    # Test scripts (30+ test files)
 │   ├── assertions.spec.js      # Assertion examples
 │   ├── checkboxes.spec.js      # Checkbox interactions
 │   ├── codegen.spec.js         # Code generation examples
