@@ -17,25 +17,28 @@ A comprehensive **practice project** for learning and implementing **end-to-end 
 This project includes **30+ test files** covering
 
 ### Core Playwright Concepts
-- **Locators & Elements**: Built-in locators, multiple element handling, hidden elements
-- **User Interactions**: Mouse hover, keyboard events, click actions
+- **Locators & Elements**: CSS selectors, XPath, built-in locators, multiple element handling
+- **User Interactions**: Mouse hover, click actions, drag & drop, right/double clicks
 - **Form Elements**: Text inputs, checkboxes, radio buttons, dropdowns, date pickers
-- **File Operations**: File uploads and downloads
-- **Navigation**: Page navigation, multiple tabs, browser context
+- **File Operations**: File uploads using `setInputFiles()` method
+- **Navigation**: Page navigation, browser context, viewport management
 
 ### Advanced Scenarios
-- **Dialog Handling**: Alerts, confirms, prompts
-- **Frame Management**: Iframe interactions and switching
-- **Auto-suggestions**: Dynamic dropdown handling
-- **Table Operations**: Data extraction and validation
-- **Error Handling**: Error message verification
-- **Wait Strategies**: Load state management and custom waits
+- **Dialog Handling**: JavaScript alerts, confirms, and prompts with `.on('dialog')`
+- **Frame Management**: Iframe interactions and context switching
+- **Auto-suggestions**: Dynamic dropdown handling with keyboard navigation
+- **Table Operations**: Data extraction, row selection, pagination handling
+- **Error Handling**: Error message verification and text validation
+- **Wait Strategies**: Load state management (load, domcontentloaded, networkidle)
 
-### Testing Patterns
+### Testing Patterns & Features
 - **Page Object Model**: Structured page classes (`loginPage.js`, `homePage.js`)
-- **Data-driven Testing**: JSON-based test data management
-- **Assertions**: Various assertion types and validation methods
-- **Code Generation**: Playwright's built-in code generation tools
+- **Data-driven Testing**: JSON-based test data management across multiple files
+- **Test Hooks**: beforeAll/afterAll for shared setup, beforeEach/afterEach for isolation
+- **Test Organization**: Hooks, test grouping, tags (@sanity, @regression)
+- **Assertions**: Hard and soft assertions, toHaveTitle, toHaveURL, toBeVisible
+- **Code Generation**: Interactive test recording with `npx playwright codegen`
+- **Screenshots**: Full page, element-specific, and viewport screenshots
 
 ---
 
@@ -258,18 +261,41 @@ practice-playwright/
 ├── 📁 pages/                    # Page Object Model classes
 │   ├── homePage.js             # Home page object
 │   └── loginPage.js            # Login page object
-├── 📁 tests/                    # Test scripts (30+ test files)
-│   ├── assertions.spec.js      # Assertion examples
-│   ├── checkboxes.spec.js      # Checkbox interactions
-│   ├── codegen.spec.js         # Code generation examples
-│   ├── dataDrivenTest.spec.js  # Data-driven testing
-│   ├── dropdown.spec.js        # Dropdown handling
-│   ├── fileUpload.spec.js      # File upload scenarios
-│   ├── handleDialogs.spec.js   # Dialog management
-│   ├── handleFrames.spec.js    # Iframe interactions
-│   ├── login.spec.js           # Login functionality
+├── 📁 tests/                    # Test scripts (34 test files)
+│   ├── assertions.spec.js      # Hard and soft assertion examples
+│   ├── checkboxes.spec.js      # Checkbox interactions and bulk selection
+│   ├── codegen.spec.js         # Playwright code generation examples
+│   ├── codegenBranded.spec.js  # Code generation with branded browsers
+│   ├── dataDrivenTest.spec.js  # Data-driven testing with JSON data
+│   ├── datePicker.spec.js     # Date picker handling (manual and dropdown)
+│   ├── dropdown.spec.js        # Dropdown handling and multi-selection
+│   ├── fileUpload.spec.js      # File upload with setInputFiles()
+│   ├── google.spec.js          # Basic page title and URL assertions
+│   ├── grouping.spec.js    # Test grouping and hooks demonstration
+│   ├── handleAutoSuggestions.spec.js # Auto-suggestion dropdown handling
+│   ├── handleDialogs.spec.js   # JavaScript alerts, confirms, prompts
+│   ├── handleFrames.spec.js    # Iframe interactions and context switching
+│   ├── handleMultipleTabs.spec.js # Multiple tabs/windows handling
+│   ├── hiddenDropdown.spec.js  # Hidden dropdown selection strategies
+│   ├── hooks1.spec.js          # Hook patterns without POM optimization
+│   ├── hooks2.spec.js          # beforeEach/afterEach hooks implementation
+│   ├── hooks3.spec.js          # beforeAll/afterAll hooks demonstration
+│   ├── keyboardEvents.spec.js  # Keyboard events and shortcuts
+│   ├── locators.spec.js        # CSS, XPath, and selector strategies
+│   ├── locatorsBuiltin.spec.js # Built-in locators (getByRole, getByText, etc.)
+│   ├── locatingMultipleElements.spec.js # Multiple element selection
+│   ├── login.spec.js           # Basic login functionality
 │   ├── loginApplicationPOM.spec.js # POM-based login tests
-│   └── ... (20+ more test files)
+│   ├── mouseClick.spec.js      # Mouse interactions, drag & drop, right/double clicks
+│   ├── mouseHover.spec.js      # Mouse hover interactions
+│   ├── radiobutton.spec.js     # Radio button selection and verification
+│   ├── readDatafromJson.spec.js # Reading test data from JSON files
+│   ├── sample.spec.js          # Basic test template and assertions
+│   ├── screenshot.spec.js      # Screenshot capture (page, element, full)
+│   ├── table.spec.js           # Table data extraction and pagination
+│   ├── tags.spec.js            # Test tagging (@sanity, @regression)
+│   ├── verifyErrorMessage.spec.js # Error message validation
+│   └── waitForLoadState.spec.js # Wait strategies for page loading
 ├── 📁 uploads/                  # Sample files for testing
 │   └── image1.png              # Test upload file
 ├── 📁 allure-results/          # Allure test results
@@ -295,6 +321,56 @@ practice-playwright/
 - **`test-results/`** - Test artifacts including screenshots, videos, and traces
 
 ---
+
+## 📚 Complete Test File Reference
+
+### Core Playwright Fundamentals
+- **assertions.spec.js** - Demonstrates hard vs soft assertions with toHaveTitle, toHaveURL, toBeVisible
+- **locators.spec.js** - CSS selectors, XPath, direct methods vs locator pattern
+- **locatorsBuiltin.spec.js** - getByRole, getByText, getByLabel, getByPlaceholder, getByAltText, getByTitle
+- **locatingMultipleElements.spec.js** - Handling multiple elements with $$ and textContent extraction
+- **google.spec.js** - Basic page title, URL assertions, and page verification
+
+### User Interface Interactions  
+- **mouseClick.spec.js** - Right-click, double-click, drag & drop with multiple approaches
+- **mouseHover.spec.js** - Mouse hover interactions for dropdowns and menus
+- **keyboardEvents.spec.js** - Keyboard navigation, type(), press(), shortcuts (Ctrl+C, Ctrl+V)
+- **checkboxes.spec.js** - Single/multiple checkbox selection, isChecked(), bulk operations
+- **radiobutton.spec.js** - Radio button selection and verification
+- **dropdown.spec.js** - Dropdown selection by label/value/index, multi-selection, validation
+
+### Form Elements & Input Handling
+- **datePicker.spec.js** - Date selection via manual input, calendar navigation, loop strategies
+- **hiddenDropdown.spec.js** - Dynamic dropdown selection from arrays, index-based selection  
+- **fileUpload.spec.js** - File upload using setInputFiles() for single/multiple files
+- **handleAutoSuggestions.spec.js** - Auto-suggestion dropdown selection via keyboard/click
+- **handleDialogs.spec.js** - JavaScript alert, confirm, prompt handling with page.on('dialog')
+- **handleFrames.spec.js** - Iframe interaction, context switching, frameLocator usage
+
+### Navigation & Context
+- **handleMultipleTabs.spec.js** - Window/tab management, page events, Promise.all() handling
+- **waitForLoadState.spec.js** - Page load states (load, domcontentloaded, networkidle)
+- **grouping.spec.js** - Test organization with hooks (beforeAll/afterAll/beforeEach/afterEach)
+
+### Data-Driven & POM Testing
+- **dataDrivenTest.spec.js** - Data-driven testing with JSON loop iteration
+- **readDatafromJson.spec.js** - Reading test data from JSON files for multiple test iterations  
+- **loginApplicationPOM.spec.js** - Page Object Model implementation with LoginPage/HomePage classes
+- **login.spec.js** - Basic login flow with viewport management
+- **verifyErrorMessage.spec.js** - Error message validation with text content verification
+
+### Testing Infrastructure
+- **hooks1.spec.js** - Hook patterns without POM, duplicate code demonstration
+- **hooks2.spec.js** - beforeEach/afterEach hooks for login/logout common operations
+- **hooks3.spec.js** - beforeAll/afterAll implementation, shared state management
+- **tags.spec.js** - Test categorization with @sanity/@regression tags and execution filtering
+- **screenshot.spec.js** - Screenshot capture (page/element/fullPage) with filename management
+
+### Data Extraction & Verification  
+- **table.spec.js** - Table data extraction, row count/column count, pagination handling, filtering
+- **sample.spec.js** - Basic test template with expect() assertions for toBe, toBeTruthy, toBeFalsy
+- **codegen.spec.js** - Playwright code generation and recording functionality
+- **codegenBranded.spec.js** - Code generation with branded browsers and manual customization
 
 ## 💡 Best Practices & Notes
 
